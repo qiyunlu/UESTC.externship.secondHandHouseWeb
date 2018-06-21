@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hwadee.SecondHandHouse.dao.AreaDao">
+	
+	<select id="findareabycityid" parameterType="int"  resultType="Area">
+		SELECT areaId,areaName,cityId,remark,map FROM area WHERE cityId = #{cityId}
+	</select>
+	
+	<select id="findallarea"  resultType="Area">
+		SELECT areaId,areaName,cityId,remark,map FROM area
+	</select>
+	
+	<select id="findbyid" parameterType="int"  resultType="Area">
+		SELECT areaId,areaName,cityId,remark,map FROM area WHERE areaId = #{areaId}
+	</select>
+	
+	<select id="findbyname" parameterType="String"  resultType="Area">
+		SELECT areaId,cityId,areaName,remark,map FROM area WHERE areaName LIKE #{areaName}
+	</select>
+	
+	<delete id="deletearea" parameterType="Int">
+		DELETE FROM area WHERE areaId = #{areaId}
+	</delete>
+	
+	<insert id="addarea" parameterType="Area" useGeneratedKeys="true" keyProperty="areaId">
+		INSERT INTO area(areaName,cityId,remark)
+		VALUES(#{areaName},#{cityId},#{remark})
+	</insert>
+	
+	<update id="updatearea" parameterType="Area" >
+		UPDATE area
+		SET areaName = #{areaName},
+			cityId = #{cityId},
+			remark = #{remark},
+			map = #{map}
+		WHERE areaId = #{areaId}
+	</update>
+</mapper>

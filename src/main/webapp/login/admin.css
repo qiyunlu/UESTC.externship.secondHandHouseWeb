@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* CSS Document */
+	
+	.head-box {
+		height: 60px;
+		background-color:#428BCA;
+	}
+	
+	.head-box h2 {
+		float:left;
+		color:#FFF;
+		margin: 14px 0 0 20px;
+		font-size: 24px;
+		font-weight: 600;
+	}
+
+	.ground-box {
+		background-color:#F1F1F1;
+	}
+	
+	.house-pic {
+		width: 200px;
+		height: 200px;
+		margin: 20px 0 30px 50px;
+		}
+	
+	.front-box {
+		border-radius:5px;
+		background-color:#48C9B0;
+		height:400px;
+		width:350px;
+		position:absolute;
+		top: 150px;
+		left: 10%;
+		
+		color:#FFF;
+		padding: 25px 0 0 20px;
+		font-size: 48px;
+		font-weight: 600;
+	}
+	
+	.back-box {
+		border-radius:5px;
+		background-color:#F4D313;
+		height:400px;
+		width:350px;
+		position:absolute;
+		top: 150px;
+		left: 37%;
+		
+		color:#FFF;
+		padding: 25px 0 0 20px;
+		font-size: 48px;
+		font-weight: 600;
+	}
+	
+	。infor-box {
+		height: 60px;
+		background-color:#428BCA;
+	}
+	
+	.infor-box h2 {
+		float:left;
+		color:#FFF;
+		margin: 14px 0 0 20px;
+		font-size: 24px;
+		font-weight: 600;
+	}
+	
+	.infor-box {
+		border-radius:5px;
+		background-color:#48C9B0;
+		height:400px;
+		width:350px;
+		position:absolute;
+		top: 150px;
+		right: 10%;
+		
+		color:#FFF;
+		padding: 25px 0 0 20px;
+		font-size: 48px;
+		font-weight: 600;
+	}
+	

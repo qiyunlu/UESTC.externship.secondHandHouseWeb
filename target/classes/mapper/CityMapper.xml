@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hwadee.SecondHandHouse.dao.CityDao">
+	<insert id="addcity" parameterType="City" useGeneratedKeys="true" keyProperty="cityId">
+		INSERT INTO city(parentCityId,cityName,remark)
+		VALUES(#{parentCityId},#{cityName},#{remark})
+	</insert>
+	
+	<select id="findbyid" parameterType="int"  resultType="City">
+		SELECT cityId,parentCityId,cityName,remark,map FROM city WHERE cityId = #{cityId}
+	</select>
+	
+	<select id="findchildrenbyid" parameterType="Int"  resultType="City">
+		SELECT cityId,parentCityId,cityName,remark,map FROM city WHERE parentCityId = #{cityId}
+	</select>
+	
+	<select id="findbyname" parameterType="String"  resultType="City">
+		SELECT cityId,parentCityId,cityName,remark,map FROM city WHERE cityName LIKE #{cityName}
+	</select>
+	
+	<select id="findall" resultType="City">
+		SELECT cityId,parentCityId,cityName,remark,map FROM city
+	</select>
+	
+	<update id="updatecity" parameterType="City" >
+		UPDATE city
+		SET cityName = #{cityName},
+			parentCityId = #{parentCityId},
+			remark = #{remark},
+			map = #{map}
+		WHERE cityId = #{cityId}
+	</update>
+</mapper>

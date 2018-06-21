@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="
+	   		http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.2.xsd
+			http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+			
+	<mvc:annotation-driven validator="validator"  />
+	
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 权限管理-城市 -->
+			<mvc:mapping path="/city/**" />
+			<bean class="com.hwadee.SecondHandHouse.interceptor.AuthInterceptor" ></bean>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<!-- 权限管理-城区 -->
+			<mvc:mapping path="/area/**" />
+			<bean class="com.hwadee.SecondHandHouse.interceptor.AuthInterceptor" ></bean>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<!-- 权限管理-片区 -->
+			<mvc:mapping path="/district/**" />
+			<bean class="com.hwadee.SecondHandHouse.interceptor.AuthInterceptor" ></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+		    <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+		      <property name="supportedMediaTypes" value = "text/plain;charset=UTF-8" />
+		    </bean>
+	   	</mvc:message-converters>
+    </mvc:annotation-driven>
+	
+	<!-- 静态资源处理 -->
+	<mvc:default-servlet-handler />
+			
+	<context:component-scan base-package="com.hwadee.SecondHandHouse.controller" />
+	
+	
+	<!-- 视图 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=""/>
+    </bean>
+	
+	 <!-- 以下 validator  ConversionService 在使用 mvc:annotation-driven 会 自动注册-->  
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">  
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>  
+        <!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties -->  
+        <property name="validationMessageSource" ref="messageSource"/>  
+    </bean>  
+      
+    <!-- 国际化的消息资源文件（本系统中主要用于显示/错误消息定制） -->  
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">  
+        <property name="useCodeAsDefaultMessage" value="false"/>  
+        <property name="defaultEncoding" value="UTF-8"/>  
+        <property name="basenames">
+        	<list>
+        		<value>classpath:i18n/ValidationMessages</value>
+        		<value>classpath:org/hibernate/validator/ValidationMessages</value> 
+        	</list>
+        </property>
+    </bean>
+	
+	 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" /> 
+</beans>

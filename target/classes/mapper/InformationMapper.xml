@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hwadee.SecondHandHouse.dao.InformationDao">
+	
+	<delete id="deleteinformation" parameterType="Int">
+		DELETE FROM information WHERE inforID = #{inforID}
+	</delete>
+	
+	<insert id="addinformation" parameterType="Information" useGeneratedKeys="true" keyProperty="inforID">
+		INSERT INTO information(inforTitle,inforPublicDate,inforContent,inforPublisher)
+		VALUES(#{inforTitle},#{inforPublicDate},#{inforContent},#{inforPublisher})
+	</insert>
+	
+	<update id="updateinformation" parameterType="Information" >
+		UPDATE information
+		SET inforTitle = #{inforTitle},
+			inforPublicDate = #{inforPublicDate},
+			inforContent = #{inforContent}
+		WHERE inforID = #{inforID}
+	</update>
+</mapper>
