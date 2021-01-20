@@ -14,7 +14,7 @@
   	<slf4j.version>1.7.21</slf4j.version>
   	<spring.version>4.2.6.RELEASE</spring.version>
   	<junit.version>4.12</junit.version>
-  	<jackson.json.version>2.7.4</jackson.json.version>
+  	<jackson.json.version>2.12.1</jackson.json.version>
   	<fasterxml.jackson.version>2.7.4</fasterxml.jackson.version>
   	<codehaus.woodstox.version>4.4.1</codehaus.woodstox.version>
   	<mybatis.version>3.3.1</mybatis.version>
